@@ -9,4 +9,5 @@
    - **Claude Code**：主控（PM 角色），主模型 Opus。
    - **Codex CLI**：执行者，经 codexmcp 调用。版本用 `codex --version`，登录状态用 `codex login status` 查询。
    - **codexmcp**：`https://github.com/123aliez/codexmcp`（PM 工作流 fork），以 user 级 MCP 注册，名称为 `codex`，由 `uvx` 启动。
+   - **codex-delegate skill**：`https://github.com/123aliez/codex-delegate`，克隆到 `~/.claude/skills/codex-delegate/`，用 `git pull` 更新。
 </desc_env>
