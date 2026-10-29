@@ -52,8 +52,6 @@ PM 模式依赖下面两个仓库：
 | codexmcp | https://github.com/123aliez/codexmcp | MCP 服务，让 Claude Code 调用本机的 Codex CLI；支持并行调用、超时，返回改动文件和执行命令等证据 |
 | codex-delegate | https://github.com/123aliez/codex-delegate | Claude Code skill，提供任务书模板、验收清单和独立审查流程；第 0～6 节是本框架用到的开发场景 |
 
-安装前先装好 Codex CLI 并登录：`npm i -g @openai/codex && codex login`。
-
 ```bash
 # 注册 codexmcp（user 级，名称必须是 codex）。需要代理时加 -e HTTPS_PROXY=... -e HTTP_PROXY=...
 claude mcp add codex -s user --transport stdio -- uvx --from git+https://github.com/123aliez/codexmcp.git codexmcp
@@ -149,8 +147,6 @@ The PM model relies on two repositories:
 |------|------------|---------|
 | codexmcp | https://github.com/123aliez/codexmcp | MCP server that lets Claude Code call the local Codex CLI; supports parallel calls and timeouts, and returns evidence such as changed files and executed commands |
 | codex-delegate | https://github.com/123aliez/codex-delegate | Claude Code skill with task-spec templates, acceptance checklists and independent review; sections 0–6 cover the development scenario this framework uses |
-
-Install and log in to Codex CLI first: `npm i -g @openai/codex && codex login`.
 
 ```bash
 # Register codexmcp (user scope; the name must be codex). Add -e HTTPS_PROXY=... -e HTTP_PROXY=... if you need a proxy
