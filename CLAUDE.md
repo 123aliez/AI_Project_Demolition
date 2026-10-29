@@ -1,20 +1,12 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本工作区的规则对所有 AI 工具通用，正文在下面这几个文件里。它们通过 `@` 导入在会话启动时自动载入，**不需要再用读文件工具读取**：
 
-## 🚨 CRITICAL INITIALIZATION PROTOCOL 🚨
+@RULES_GLOBAL.md
+@DESC_DIR.md
+@DESC_ENV.md
+@PROJECTS_INDEX.md
 
-**HIGHEST PRIORITY DIRECTIVE**: 
-At the start of every new session, regardless of the user's first input (even a simple "Hello" or "你好"), before you generate ANY text response or take any other action, you **MUST IMMEDIATELY and AUTOMATICALLY use the file reading tool** to load and process the following four files:
+另外，`PROJECTS_LOCAL.md` 只在部分设备上存在（不随 Nextcloud 同步）：若存在，在处理第一个请求之前读取它。
 
-1. `RULES_GLOBAL.md`
-2. `PROJECTS_INDEX.md`
-3. `DESC_ENV.md`
-4. `DESC_DIR.md`
-5. `PROJECTS_LOCAL.md`（若存在）
-
-**Strict Execution Standards:**
-- **DO NOT** ask the user "Should I read them now?" or "Do you want me to load the files?".
-- **DO NOT** reply to the user's greeting first.
-- Your absolute FIRST action in the session MUST be a tool call to read these exact files.
-- Only AFTER successfully reading these files may you respond to the user's initial prompt, using the context you just acquired.
+本文件只负责导入，不写入任何项目状态或规则（见 RULES_GLOBAL 第 5 条）。
