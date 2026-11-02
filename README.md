@@ -7,7 +7,6 @@
 - **上下文预加载**：`CLAUDE.md` 用 `@` 导入规则文件，会话启动时自动载入，不需要人工解释环境
 - **PM 模式**：Claude 写任务书、验收，不直接改代码；Codex 执行。验收时另开一个 Codex 会话做独立审查
 - **先确认再动手**：任何文件修改都先给出修改计划，委派给 Codex 的任务书就是修改计划
-- **硬约束**：`.claude/settings.json` 按扩展名禁止 Claude 直接编辑代码文件，全权限启动时同样生效
 - **工具无关**：规则写在纯 Markdown 文件里，Claude Code 和 Codex 通用
 - **跨会话持久**：项目状态写入 `PROJECT.md` / `PROGRESS.md`，不依赖 AI 的记忆系统
 
@@ -22,7 +21,6 @@
 ├── DESC_ENV.md            # 运行环境与 AI 工具链
 ├── PROJECTS_INDEX.md      # 全局项目索引
 ├── PROJECTS_LOCAL.md      # 本机外部项目索引（不同步）
-├── .claude/settings.json  # 权限：允许调用 codex，禁止 Claude 直接改代码文件
 ├── .gitignore
 ├── _template/
 │   ├── PROJECT.md         # 项目文档模板（含"开发约定"）
@@ -67,12 +65,11 @@ git -C ~/.claude/skills/codex-delegate pull
 
 ### 1. 准备工作区
 
-把本仓库的文件复制到你的工作区根目录。注意要带上隐藏文件 `.claude/settings.json` 和 `.gitignore`；工作区里已有 `PROJECTS_INDEX.md` 和 `PROJECTS_LOCAL.md` 的话，不要覆盖。
+把本仓库的文件复制到你的工作区根目录。注意要带上隐藏文件 `.gitignore`；工作区里已有 `PROJECTS_INDEX.md` 和 `PROJECTS_LOCAL.md` 的话，不要覆盖。
 
 ### 2. 按需调整
 
 - `DESC_ENV.md`：环境说明和 AI 工具链。
-- `.claude/settings.json`：禁止 Claude 直接编辑的代码扩展名。非软件项目需要 Claude 直接写 `html`、`css`、`sh` 这类文件时，删掉对应的行。
 
 ### 3. 启动
 
@@ -81,7 +78,6 @@ cd <工作区>
 claude
 ```
 
-- 首次启动时在提示中选择信任该目录，`allow` 规则才会生效（全权限启动时不需要）。
 - 执行 `/model opus`。
 - 用 `/mcp` 确认 codex 已连接；输入 `/`，能看到 `codex-delegate`。
 
@@ -114,7 +110,6 @@ A **project development management framework** for AI coding assistants (Claude 
 - **Context Pre-loading**: `CLAUDE.md` `@`-imports the rule files, so they load automatically at session start
 - **PM Model**: Claude writes task specs and accepts work but never edits code directly; Codex executes. A separate Codex session independently reviews each change
 - **Confirm Before Acting**: every file change starts with a plan for the user to confirm; a task spec for Codex is that plan
-- **Hard Guardrails**: `.claude/settings.json` blocks Claude from editing code files by extension, including in full-permission mode
 - **Tool-Agnostic**: rules are plain Markdown, shared by Claude Code and Codex
 - **Cross-Session Persistence**: project state lives in `PROJECT.md` / `PROGRESS.md`, independent of AI memory
 
@@ -129,7 +124,6 @@ A **project development management framework** for AI coding assistants (Claude 
 ├── DESC_ENV.md            # Environment and AI toolchain
 ├── PROJECTS_INDEX.md      # Global project index
 ├── PROJECTS_LOCAL.md      # Local external projects (not synced)
-├── .claude/settings.json  # Permissions: allow codex, block direct code edits
 ├── .gitignore
 ├── _template/
 │   ├── PROJECT.md         # Project doc template (with "dev conventions")
@@ -161,9 +155,9 @@ git -C ~/.claude/skills/codex-delegate pull
 
 ## Quick Start
 
-1. Copy this repository's files into your workspace root, including the hidden `.claude/settings.json` and `.gitignore`. Don't overwrite an existing `PROJECTS_INDEX.md` or `PROJECTS_LOCAL.md`.
-2. Adjust `DESC_ENV.md` and, if needed, the blocked extensions in `.claude/settings.json`.
-3. Run `claude` in the workspace root. Trust the folder on first start (so `allow` rules apply), run `/model opus`, and check that `/mcp` shows codex connected and `/` lists `codex-delegate`.
+1. Copy this repository's files into your workspace root, including the hidden `.gitignore`. Don't overwrite an existing `PROJECTS_INDEX.md` or `PROJECTS_LOCAL.md`.
+2. Adjust `DESC_ENV.md` to match your environment.
+3. Run `claude` in the workspace root. Run `/model opus`, and check that `/mcp` shows codex connected and `/` lists `codex-delegate`.
 4. Describe what you want. The AI finds or creates the project folder, writes a task spec for you to confirm, delegates it to Codex, then accepts the result and runs an independent review.
 
 ## Relationship with [ai-linux-ops](https://github.com/123aliez/ai-linux-ops)
